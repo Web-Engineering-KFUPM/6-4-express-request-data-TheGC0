@@ -112,6 +112,21 @@ app.get("/", (req, res) => {
   res.send("API running at http://localhost:3000");
 });
 
+app.get("/echo", (req, res) => {
+  const { name, age } = req.query;
+
+  if (!name || !age) {
+    return res.status(400).json({ ok: false, error: "name & age required" });
+  }
+
+  res.json({
+    ok: true,
+    name,
+    age,
+    msg: `Hello ${name}, you are ${age}`,
+  });
+});
+
 // Query params: /echo?name=Ali&age=22
 
 
